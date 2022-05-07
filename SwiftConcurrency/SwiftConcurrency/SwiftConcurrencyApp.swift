@@ -12,7 +12,8 @@ struct SwiftConcurrencyApp: App {
     var body: some Scene {
         WindowGroup {
 //            DownloadImageAsync()
-            AsyncAwait()
+//            AsyncAwait()
+            TaskDemoHomeView()
         }
     }
 }
