@@ -85,23 +85,39 @@ struct TaskDemo2: View {
 //                await viewModel.fetchImage()
 //            }
 
-            // In Parallel
-            Task {
-                await viewModel.fetchImage()
-            }
-            Task {
-                await viewModel.fetchImage()
-            }
-            Task {
-                await viewModel.fetchImage()
-            }
-            Task {
-                await viewModel.fetchImage()
-            }
-            Task {
-                await viewModel.fetchImage()
-            }
+//            // In Parallel
+//            Task {
+//                await viewModel.fetchImage()
+//            }
+//            Task {
+//                await viewModel.fetchImage()
+//            }
+//            Task {
+//                await viewModel.fetchImage()
+//            }
+//            Task {
+//                await viewModel.fetchImage()
+//            }
+//            Task {
+//                await viewModel.fetchImage()
+//            }
 
+            
+//            // One after another
+//            await withTaskGroup(of: Void.self, body: { group in
+//                for _ in 0..<5 {
+//                    await viewModel.fetchImage()
+//                }
+//            })
+
+            // In Parellel
+            await withTaskGroup(of: Void.self, body: { group in
+                for _ in 0..<5 {
+                    group.addTask {
+                        await viewModel.fetchImage()
+                    }
+                }
+            })
             
             
         }
