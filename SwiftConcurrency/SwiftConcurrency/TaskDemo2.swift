@@ -56,23 +56,23 @@ struct Task2DemoHomeView: View {
 struct TaskDemo2: View {
 
     @StateObject private var viewModel = Task2DataModel()
-
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        ScrollView {
-            
-            VStack (spacing: 40) {
-
-                ForEach(viewModel.images, id: \.self) { image in
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
+        
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.images, id: \.self) { image in
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                    }
                 }
             }
-
-
         }
+        .navigationTitle("Grid of images")
         .task {
 //            await viewModel.fetchImage()
             
@@ -105,14 +105,14 @@ struct TaskDemo2: View {
             
 //            // One after another
 //            await withTaskGroup(of: Void.self, body: { group in
-//                for _ in 0..<5 {
+//                for _ in 0..<15 {
 //                    await viewModel.fetchImage()
 //                }
 //            })
 
             // In Parellel
             await withTaskGroup(of: Void.self, body: { group in
-                for _ in 0..<5 {
+                for _ in 0..<15 {
                     group.addTask {
                         await viewModel.fetchImage()
                     }
