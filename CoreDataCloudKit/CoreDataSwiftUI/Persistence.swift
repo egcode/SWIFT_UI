@@ -36,7 +36,7 @@ struct PersistenceController {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
         container.viewContext.automaticallyMergesChangesFromParent = true //            Must for CloudKit
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy //  Must for CloudKit
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy //  Must for CloudKit, (the in memory changes - source of truth)
 
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
