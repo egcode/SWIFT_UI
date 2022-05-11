@@ -102,10 +102,11 @@ class PersistenceController {
                 for item in items {
                     print("\(item.name)")
                 }
+                
+                // Enumerate Duplicates START
                 var i=0
                 var j=0
                 while j<items.count-1 {
-
                     if items[j].name == items[j+1].name {
                         let tmp = items[j].name
                         i=j
@@ -117,15 +118,14 @@ class PersistenceController {
                             count += 1
                             i += 1
                         }
-                        if j != i {
-                            j = i
-                            continue
-                        }
+                        j = i
+                    } else {
+                        j += 1
                     }
-                    j += 1
                 }
+                // Enumerate Duplicates END
                 
-                
+
                 // save if we need to save
                 if context.hasChanges {
                     print("CHANGED: ")
