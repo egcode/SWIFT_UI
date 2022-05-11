@@ -16,8 +16,8 @@ struct ContentView: View {
 //                  predicate: nil,
 //                  animation: .default)
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\Fruit.name, order: .reverse)])
-//    @FetchRequest(sortDescriptors: [SortDescriptor(\Fruit.name, order: .forward)])
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\Fruit.name, order: .reverse)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\Fruit.name, order: .forward)])
 
     
     private var fruits: FetchedResults<Fruit>
