@@ -11,6 +11,7 @@
 		6A4985502825FB0C005A5458 /* TaskDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A49854F2825FB0C005A5458 /* TaskDemo.swift */; };
 		6A4985522826089C005A5458 /* TaskDemo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4985512826089C005A5458 /* TaskDemo2.swift */; };
 		6A86C1DE283456090056C550 /* CheckedContinuationsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A86C1DD283456090056C550 /* CheckedContinuationsDemo.swift */; };
+		6A86C1E028628C170056C550 /* ActorsDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A86C1DF28628C170056C550 /* ActorsDemo.swift */; };
 		6ABF0B932825ABAE00B1EF0C /* SwiftConcurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABF0B922825ABAE00B1EF0C /* SwiftConcurrencyApp.swift */; };
 		6ABF0B972825ABB000B1EF0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ABF0B962825ABB000B1EF0C /* Assets.xcassets */; };
 		6ABF0B9A2825ABB000B1EF0C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ABF0B992825ABB000B1EF0C /* Preview Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		6A49854F2825FB0C005A5458 /* TaskDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDemo.swift; sourceTree = "<group>"; };
 		6A4985512826089C005A5458 /* TaskDemo2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDemo2.swift; sourceTree = "<group>"; };
 		6A86C1DD283456090056C550 /* CheckedContinuationsDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedContinuationsDemo.swift; sourceTree = "<group>"; };
+		6A86C1DF28628C170056C550 /* ActorsDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsDemo.swift; sourceTree = "<group>"; };
 		6ABF0B8F2825ABAE00B1EF0C /* SwiftConcurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftConcurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ABF0B922825ABAE00B1EF0C /* SwiftConcurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftConcurrencyApp.swift; sourceTree = "<group>"; };
 		6ABF0B962825ABB000B1EF0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				6A4985512826089C005A5458 /* TaskDemo2.swift */,
 				6AFCF88F282EC23900907D65 /* TaskGroupDemo.swift */,
 				6A86C1DD283456090056C550 /* CheckedContinuationsDemo.swift */,
+				6A86C1DF28628C170056C550 /* ActorsDemo.swift */,
 				6ABF0B962825ABB000B1EF0C /* Assets.xcassets */,
 				6ABF0B982825ABB000B1EF0C /* Preview Content */,
 			);
@@ -156,6 +159,7 @@
 				6A86C1DE283456090056C550 /* CheckedContinuationsDemo.swift in Sources */,
 				6AFCF890282EC23900907D65 /* TaskGroupDemo.swift in Sources */,
 				6ABF0BA12825CFBE00B1EF0C /* DownloadImageAsync.swift in Sources */,
+				6A86C1E028628C170056C550 /* ActorsDemo.swift in Sources */,
 				6ABF0B932825ABAE00B1EF0C /* SwiftConcurrencyApp.swift in Sources */,
 				6A4985522826089C005A5458 /* TaskDemo2.swift in Sources */,
 				6A49854E2825F4DE005A5458 /* AsyncAwait.swift in Sources */,
