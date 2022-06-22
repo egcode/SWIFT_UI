@@ -46,6 +46,10 @@ actor MyActorDataManager {
         print(Thread.current)
         return self.data.randomElement()
     }
+    
+    nonisolated func getSavedData() -> String {
+        return "NEW DATA"
+    }
 }
 
 
@@ -64,6 +68,10 @@ struct HomeView: View {
             Text(text)
                 .font(.headline)
         }
+        .onAppear(perform: {
+            let newData = manager.getSavedData()
+            print(newData)
+        })
         .onReceive(timer) { _ in
             
             // THREAD RACE SOLVED WITH ACTOR
