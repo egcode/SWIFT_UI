@@ -25,6 +25,11 @@ class GlobalActorDemoViewModel: ObservableObject {
 //  nonisolated
     @MyFirstGlobalActor func getData() {
         
+        /*
+         This method is not marked as async, but is async because it's
+         marked as @MyFirstGlobalActor - global actor method
+         */
+        
         // HEAVY COMPLEX METHODS
         
         Task {
