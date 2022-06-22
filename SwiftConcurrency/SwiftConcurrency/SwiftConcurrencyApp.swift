@@ -16,7 +16,8 @@ struct SwiftConcurrencyApp: App {
 //            TaskDemoHomeView()
 //            Task2DemoHomeView()
 //            TaskGroupHomeView()
-            ActorsDemo()
+//            ActorsDemo()
+            GlobalActorDemo()
         }
     }
 }
