@@ -15,6 +15,8 @@ class MyDataManager {
     var data: [String] = []
     private let lock = DispatchQueue(label: "com.MyApp.MyDataManager")
     
+    
+    // THREAD RACE SOLVED
     func getRandomData(completionHandler: @escaping (_ title: String?) -> ()) {
         lock.async {
             self.data.append(UUID().uuidString)
@@ -22,9 +24,17 @@ class MyDataManager {
             completionHandler(self.data.randomElement())
         }
     }
+    
+    // THREAD RACE
+    func getRandomData() -> String? {
+        self.data.append(UUID().uuidString)
+        print(Thread.current)
+        return self.data.randomElement()
+    }
+
 }
 
-class MyActorDataManager {
+actor MyActorDataManager {
     
     static let instance = MyActorDataManager()
     private init() {    }
@@ -41,8 +51,8 @@ class MyActorDataManager {
 
 struct HomeView: View {
     
-    let manager = MyDataManager.instance // Class
-//    let manager = MyActorDataManager.instance // Actor
+//    let manager = MyDataManager.instance // Class
+    let manager = MyActorDataManager.instance // Actor
 
     @State private var text: String = ""
     let timer = Timer.publish(every: 0.1, tolerance: nil, on: .main, in: .common, options: nil).autoconnect()
@@ -55,23 +65,36 @@ struct HomeView: View {
                 .font(.headline)
         }
         .onReceive(timer) { _ in
-//            Task {
-//                if let data = await manager.getRandomData() {
-//                    await MainActor.run(body: {
+            
+            // THREAD RACE SOLVED WITH ACTOR
+            Task {
+                if let data = await manager.getRandomData() {
+                    await MainActor.run(body: {
+                        self.text = data
+                    })
+                }
+            }
+            
+//            // THREAD RACE
+//            DispatchQueue.global(qos: .background).async {
+//                if let data = manager.getRandomData() {
+//                    DispatchQueue.main.async {
 //                        self.text = data
-//                    })
+//                    }
 //                }
 //            }
             
-            DispatchQueue.global(qos: .background).async {
-                manager.getRandomData { title in
-                    if let data = title {
-                        DispatchQueue.main.async {
-                            self.text = data
-                        }
-                    }
-                }
-            }
+//            // THREAD RACE SOLVED
+//            DispatchQueue.global(qos: .background).async {
+//                manager.getRandomData { title in
+//                    if let data = title {
+//                        DispatchQueue.main.async {
+//                            self.text = data
+//                        }
+//                    }
+//                }
+//            }
+            
             
         }
         
@@ -83,8 +106,8 @@ struct HomeView: View {
 
 struct BrowseView: View {
     
-    let manager = MyDataManager.instance // Class
-//    let manager = MyActorDataManager.instance // Actor
+//    let manager = MyDataManager.instance // Class
+    let manager = MyActorDataManager.instance // Actor
 
     @State private var text: String = ""
     let timer = Timer.publish(every: 0.01, tolerance: nil, on: .main, in: .common, options: nil).autoconnect()
@@ -97,23 +120,36 @@ struct BrowseView: View {
                 .font(.headline)
         }
         .onReceive(timer) { _ in
-//            Task {
-//                if let data = await manager.getRandomData() {
-//                    await MainActor.run(body: {
+            
+            // THREAD RACE SOLVED WITH ACTOR
+            Task {
+                if let data = await manager.getRandomData() {
+                    await MainActor.run(body: {
+                        self.text = data
+                    })
+                }
+            }
+
+//            // THREAD RACE
+//            DispatchQueue.global(qos: .background).async {
+//                if let data = manager.getRandomData() {
+//                    DispatchQueue.main.async {
 //                        self.text = data
-//                    })
+//                    }
 //                }
 //            }
             
-            DispatchQueue.global(qos: .background).async {
-                manager.getRandomData { title in
-                    if let data = title {
-                        DispatchQueue.main.async {
-                            self.text = data
-                        }
-                    }
-                }
-            }
+//            // THREAD RACE SOLVED
+//            DispatchQueue.global(qos: .background).async {
+//                manager.getRandomData { title in
+//                    if let data = title {
+//                        DispatchQueue.main.async {
+//                            self.text = data
+//                        }
+//                    }
+//                }
+//            }
+            
             
         }
         
