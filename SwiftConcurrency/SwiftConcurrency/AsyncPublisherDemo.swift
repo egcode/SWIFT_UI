@@ -27,7 +27,7 @@ class AsyncPublisherDataManager {
 
 class AsyncPublisherDemoViewModel: ObservableObject {
     
-    @Published var dataArray: [String] = []
+    @MainActor @Published var dataArray: [String] = []
     let manager = AsyncPublisherDataManager()
     var cancellables = Set<AnyCancellable>()
     
@@ -36,12 +36,29 @@ class AsyncPublisherDemoViewModel: ObservableObject {
     }
     
     private func addSubscribers() {
-        manager.$myData
-            .receive(on: DispatchQueue.main, options: nil)
-            .sink { dataArray in
-                self.dataArray = dataArray
+        
+        // ---AsyncPublisher subscribe way
+        Task {
+            for await value in manager.$myData.values {
+                await MainActor.run(body: {
+                    self.dataArray = value
+                })
             }
-            .store(in: &cancellables)
+            
+            // ---Will never be execuded since task listens to the loop above
+            await MainActor.run(body: {
+                self.dataArray = ["BLAH"]
+            })
+            
+        }
+        
+//        // ---Combine subscribe way
+//        manager.$myData
+//            .receive(on: DispatchQueue.main, options: nil)
+//            .sink { dataArray in
+//                self.dataArray = dataArray
+//            }
+//            .store(in: &cancellables)
     }
     
     func start() async {
