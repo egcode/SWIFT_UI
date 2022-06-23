@@ -15,6 +15,9 @@ actor CurrentUserManager {
     }
 }
 
+/**
+ Structs are sendable by default
+ */
 //struct MyUserInfo: Sendable {
 //    var name: String
 //}
