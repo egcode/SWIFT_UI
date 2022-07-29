@@ -13,7 +13,8 @@ struct SWUI1App: App {
         WindowGroup {
 //            ContentView()
 //            BackgroundOverlay()
-            BindingDemo()
+//            BindingDemo()
+            ListDemo()
         }
     }
 }

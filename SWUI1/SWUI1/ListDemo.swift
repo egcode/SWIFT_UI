@@ -11,7 +11,8 @@ struct ListDemo: View {
     
     @State var fruits: [String] = ["apple", "orange", "banana", "peach", "mango"]
     @State var veggies: [String] = ["potato", "tomato", "carrot"]
-
+    @State var selectedFruit: String? = nil
+    
     var body: some View {
 
         NavigationView {
@@ -30,6 +31,10 @@ struct ListDemo: View {
                             .font(.body)
                             .foregroundColor(.yellow)
                             .padding(.vertical)
+                            .onTapGesture {
+                                self.selectedFruit = fruit
+                                print("Selected: \(fruit)")
+                            }
                     }
                     .onDelete(perform: delete)
                     .onMove(perform: move)
